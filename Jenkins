@@ -1,0 +1,11 @@
+node {
+    
+    properties([[$class: 'JiraProjectProperty'], parameters([choice(choices: ['clean', 'install', 'package'], description: '', name: 'command')])])
+    stage ("checkout"){
+        git 'https://github.com/opstree/OT-Java-WebApp.git'
+    }
+    stage("build"){
+        
+        sh "mvn $command"
+    }
+}
